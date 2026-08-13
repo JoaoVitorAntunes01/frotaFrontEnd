@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.frontprojetofinal.frontprojetofinal.model;
 
 public class EmpresaDTO {
@@ -11,16 +7,10 @@ public class EmpresaDTO {
     private String nome;
     private String cep;
     private Long id_usuario;
+    private String email;
+    private String senha;
 
     public EmpresaDTO() {
-    }
-
-    public EmpresaDTO(Long id, String cnpj, String nome, String cep, Long id_usuario) {
-        this.id = id;
-        this.cnpj = cnpj;
-        this.nome = nome;
-        this.cep = cep;
-        this.id_usuario = id_usuario;
     }
 
     public Long getId() {
@@ -62,5 +52,20 @@ public class EmpresaDTO {
     public void setId_usuario(Long id_usuario) {
         this.id_usuario = id_usuario;
     }
-    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 }

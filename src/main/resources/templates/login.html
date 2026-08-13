@@ -37,49 +37,82 @@
                 <h2 class="fw-bold mb-1">Bem-vindo</h2>
                 <p class="text-muted mb-4">Informe seus dados para entrar</p>
 
-                <div class="alert alert-danger py-2 small" role="alert" th:if="${param.error}">
-                    Usuário ou senha inválidos.
+                <div class="alert alert-danger py-2 small" role="alert" th:if="${erro}" th:text="${erro}"></div>
+                <div class="alert alert-success py-2 small" role="alert" th:if="${param.cadastroSucesso}">
+                    Empresa cadastrada com sucesso! Faça login para continuar.
                 </div>
 
-                <form th:action="@{/login}" method="post">
+                <ul class="nav nav-pills nav-fill mb-4" id="tipoLoginTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="tab-empresa" data-bs-toggle="pill"
+                                data-bs-target="#pane-empresa" type="button" role="tab">
+                            Sou empresa
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tab-motorista" data-bs-toggle="pill"
+                                data-bs-target="#pane-motorista" type="button" role="tab">
+                            Sou motorista
+                        </button>
+                    </li>
+                </ul>
 
-                    <div class="mb-3">
-                        <label for="username" class="form-label fw-semibold">Usuário</label>
-                        <input type="email"
-                               class="form-control form-control-lg"
-                               id="username"
-                               name="username"
-                               placeholder="seu@email.com"
-                               required
-                               autofocus>
+                <div class="tab-content">
+
+                    <div class="tab-pane fade show active" id="pane-empresa" role="tabpanel">
+                        <form th:action="@{/login}" method="post">
+                            <input type="hidden" name="tipo" value="EMPRESA">
+
+                            <div class="mb-3">
+                                <label for="email-empresa" class="form-label fw-semibold">E-mail</label>
+                                <input type="email" class="form-control form-control-lg" id="email-empresa"
+                                       name="email" placeholder="empresa@email.com" required autofocus>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="senha-empresa" class="form-label fw-semibold">Senha</label>
+                                <input type="password" class="form-control form-control-lg" id="senha-empresa"
+                                       name="senha" placeholder="••••••••" required>
+                            </div>
+
+                            <div class="d-grid mb-2 mt-2">
+                                <button type="submit" class="btn btn-warning btn-lg fw-semibold">Entrar como empresa</button>
+                            </div>
+                        </form>
+
+                        <p class="text-center small text-muted mt-4 mb-0">
+                            Ainda não tem uma conta?
+                            <a th:href="@{/registro}" class="link-warning fw-semibold text-decoration-none">Cadastre sua empresa</a>
+                        </p>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="password" class="form-label fw-semibold">Senha</label>
-                        <input type="password"
-                               class="form-control form-control-lg"
-                               id="password"
-                               name="password"
-                               placeholder="••••••••"
-                               required>
+                    <div class="tab-pane fade" id="pane-motorista" role="tabpanel">
+                        <form th:action="@{/login}" method="post">
+                            <input type="hidden" name="tipo" value="MOTORISTA">
+
+                            <div class="mb-3">
+                                <label for="email-motorista" class="form-label fw-semibold">E-mail</label>
+                                <input type="email" class="form-control form-control-lg" id="email-motorista"
+                                       name="email" placeholder="motorista@email.com" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="senha-motorista" class="form-label fw-semibold">Senha</label>
+                                <input type="password" class="form-control form-control-lg" id="senha-motorista"
+                                       name="senha" placeholder="••••••••" required>
+                            </div>
+
+                            <div class="d-grid mb-2 mt-2">
+                                <button type="submit" class="btn btn-warning btn-lg fw-semibold">Entrar como motorista</button>
+                            </div>
+                        </form>
+
+                        <p class="text-center small text-muted mt-4 mb-0">
+                            Seu acesso é criado pela empresa em que você trabalha.
+                        </p>
                     </div>
 
-                    <div class="d-grid mb-4 mt-2">
-                        <button type="submit" class="btn btn-warning btn-lg fw-semibold">Entrar</button>
-                    </div>
-
-                </form>
-
-                <div class="d-flex align-items-center mb-4">
-                    <hr class="flex-grow-1">
-                    <span class="px-3 small text-muted">ou</span>
-                    <hr class="flex-grow-1">
                 </div>
-
-                <p class="text-center small text-muted mb-0">
-                    Não tem uma conta?
-                    <a href="#" class="link-warning fw-semibold text-decoration-none">Cadastre-se</a>
-                </p>
 
             </div>
         </div>

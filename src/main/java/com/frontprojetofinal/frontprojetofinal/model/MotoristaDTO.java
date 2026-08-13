@@ -8,7 +8,7 @@ public class MotoristaDTO {
     private String telefone;
     private String email;
     private String senha;
-    private UsuarioDTO id_usuario;
+    private Long id_empresa;
 
     public MotoristaDTO() {}
 
@@ -30,6 +30,6 @@ public class MotoristaDTO {
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
 
-    public UsuarioDTO getId_usuario() { return id_usuario; }
-    public void setId_usuario(UsuarioDTO id_usuario) { this.id_usuario = id_usuario; }
+    public Long getId_empresa() { return id_empresa; }
+    public void setId_empresa(Long id_empresa) { this.id_empresa = id_empresa; }
 }

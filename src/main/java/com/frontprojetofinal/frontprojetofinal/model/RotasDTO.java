@@ -1,40 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.frontprojetofinal.frontprojetofinal.model;
 
-import java.security.Timestamp;
-
 public class RotasDTO {
-    
+
     private Long id;
     private String cep_saida;
     private String cep_destino;
     private String distancia;
     private String tempo_estimado;
-    private Timestamp hora_saida;
-    private Timestamp hora_chegada;
+
+    // Formato "yyyy-MM-ddTHH:mm" (igual ao enviado por <input type="datetime-local">)
+    private String hora_saida;
+    private String hora_chegada;
+
     private String observacao;
     private Long id_veiculo;
     private Long id_motorista;
 
+    // Somente leitura, preenchidos pelo backend para exibição
+    private String veiculo_placa;
+    private String veiculo_modelo;
+    private String motorista_nome;
+
     public RotasDTO() {
     }
 
-    public RotasDTO(Long id, String cep_saida, String cep_destino, String distancia, String tempo_estimado, Timestamp hora_saida, Timestamp hora_chegada, String observacao, Long id_veiculo, Long id_motorista) {
-        this.id = id;
-        this.cep_saida = cep_saida;
-        this.cep_destino = cep_destino;
-        this.distancia = distancia;
-        this.tempo_estimado = tempo_estimado;
-        this.hora_saida = hora_saida;
-        this.hora_chegada = hora_chegada;
-        this.observacao = observacao;
-        this.id_veiculo = id_veiculo;
-        this.id_motorista = id_motorista;
-    }
-    
     public Long getId() {
         return id;
     }
@@ -75,19 +64,19 @@ public class RotasDTO {
         this.tempo_estimado = tempo_estimado;
     }
 
-    public Timestamp getHora_saida() {
+    public String getHora_saida() {
         return hora_saida;
     }
 
-    public void setHora_saida(Timestamp hora_saida) {
+    public void setHora_saida(String hora_saida) {
         this.hora_saida = hora_saida;
     }
 
-    public Timestamp getHora_chegada() {
+    public String getHora_chegada() {
         return hora_chegada;
     }
 
-    public void setHora_chegada(Timestamp hora_chegada) {
+    public void setHora_chegada(String hora_chegada) {
         this.hora_chegada = hora_chegada;
     }
 
@@ -114,5 +103,28 @@ public class RotasDTO {
     public void setId_motorista(Long id_motorista) {
         this.id_motorista = id_motorista;
     }
-    
+
+    public String getVeiculo_placa() {
+        return veiculo_placa;
+    }
+
+    public void setVeiculo_placa(String veiculo_placa) {
+        this.veiculo_placa = veiculo_placa;
+    }
+
+    public String getVeiculo_modelo() {
+        return veiculo_modelo;
+    }
+
+    public void setVeiculo_modelo(String veiculo_modelo) {
+        this.veiculo_modelo = veiculo_modelo;
+    }
+
+    public String getMotorista_nome() {
+        return motorista_nome;
+    }
+
+    public void setMotorista_nome(String motorista_nome) {
+        this.motorista_nome = motorista_nome;
+    }
 }

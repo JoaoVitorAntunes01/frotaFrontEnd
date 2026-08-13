@@ -1,6 +1,6 @@
 package com.frontprojetofinal.frontprojetofinal.controller;
 
-import com.frontprojetofinal.frontprojetofinal.model.MotoristaDTO;
+import com.frontprojetofinal.frontprojetofinal.model.VeiculoDTO;
 import com.frontprojetofinal.frontprojetofinal.service.ApiService;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
@@ -11,52 +11,48 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class CadastrarMotoristaController {
+public class CadastrarVeiculoController {
 
     @Autowired
     private ApiService apiService;
 
-    @GetMapping("/motoristas")
-    public String listarMotoristas(HttpSession session, Model model) {
+    @GetMapping("/veiculos")
+    public String listarVeiculos(HttpSession session, Model model) {
         String redirect = exigirEmpresaLogada(session);
         if (redirect != null) {
             return redirect;
         }
 
         Long idEmpresa = (Long) session.getAttribute("idPerfil");
-        List<MotoristaDTO> motoristas = apiService.listarMotoristasPorEmpresa(idEmpresa);
-        model.addAttribute("motoristas", motoristas);
-        return "listarmotoristas";
+        List<VeiculoDTO> veiculos = apiService.listarVeiculosPorEmpresa(idEmpresa);
+        model.addAttribute("veiculos", veiculos);
+        return "listarveiculos";
     }
 
-    @GetMapping("/motoristas/novo")
-    public String novoMotorista(HttpSession session, Model model) {
+    @GetMapping("/veiculos/novo")
+    public String novoVeiculo(HttpSession session, Model model) {
         String redirect = exigirEmpresaLogada(session);
         if (redirect != null) {
             return redirect;
         }
 
-        model.addAttribute("motorista", new MotoristaDTO());
-        return "cadastrarmotorista";
+        model.addAttribute("veiculo", new VeiculoDTO());
+        return "cadastrarveiculo";
     }
 
-    @PostMapping("/motoristas")
-    public String cadastrarMotorista(MotoristaDTO motorista, HttpSession session) {
+    @PostMapping("/veiculos")
+    public String cadastrarVeiculo(VeiculoDTO veiculo, HttpSession session) {
         String redirect = exigirEmpresaLogada(session);
         if (redirect != null) {
             return redirect;
         }
 
         Long idEmpresa = (Long) session.getAttribute("idPerfil");
-        motorista.setId_empresa(idEmpresa);
-        apiService.cadastrarMotorista(motorista);
-        return "redirect:/?motoristaCadastrado";
+        veiculo.setId_empresa(idEmpresa);
+        apiService.cadastrarVeiculo(veiculo);
+        return "redirect:/?veiculoCadastrado";
     }
 
-    /**
-     * Garante que só uma empresa logada acesse estas rotas.
-     * Retorna o destino de redirecionamento, ou null se pode prosseguir.
-     */
     private String exigirEmpresaLogada(HttpSession session) {
         Object tipo = session.getAttribute("tipo");
         if (!"EMPRESA".equals(tipo)) {
